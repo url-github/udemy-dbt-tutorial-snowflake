@@ -31,20 +31,35 @@ models:
           - positive_value
 
   - name: dim_hosts_cleansed
+    description: "Cleansed table for the Airbnb hosts"
     columns:
       - name: host_id
+        data_type: number
+        description: "The id of the host. This is the primary key."
         tests:
           - not_null
           - unique
 
       - name: host_name
+        data_type: varchar
+        description: "The name of the host"
         tests:
           - not_null
 
       - name: is_superhost
+        data_type: varchar
+        description: "Defines whether the hosts is a superhost."
         tests:
           - accepted_values:
               values: ['t', 'f']
+
+      - name: created_at
+        data_type: timestamp_ntz
+        description: ""
+
+      - name: updated_at
+        data_type: timestamp_ntz
+        description: ""
 
   - name: dim_listings_w_hosts
     tests:
@@ -81,34 +96,3 @@ models:
         tests:
           - accepted_values:
               values: ['positive', 'neutral', 'negative']
-
-  - name: dim_hosts_cleansed
-    description: "Cleansed table for the Airbnb hosts"
-    columns:
-      - name: host_id
-        data_type: number
-        description: "The id of the host. This is the primary key."
-        tests:
-          - not_null
-          - unique
-
-      - name: host_name
-        data_type: varchar
-        description: "The name of the host"
-        tests:
-          - not_null
-
-      - name: is_superhost
-        data_type: varchar
-        description: "Defines whether the hosts is a superhost."
-        tests:
-          - accepted_values:
-              values: ['t', 'f']
-
-      - name: created_at
-        data_type: timestamp_ntz
-        description: ""
-
-      - name: updated_at
-        data_type: timestamp_ntz
-        description: ""
